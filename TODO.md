@@ -30,7 +30,6 @@ Step-by-Step Approach
         * Laravel Echo: For real-time features like notifications or updates, Laravel Echo can be integrated.
         * Laravel Forge: Once your system is ready for production, Forge can help automate server setup, deployments,
           and scaling.
-          Things to Focus on Early on:
 7. Job Queue Processing:
     * Set up your cron job to process queued jobs.
     * Make sure you understand the basics of Laravel’s queue system (queue:work, queue:listen, job classes, etc.).
