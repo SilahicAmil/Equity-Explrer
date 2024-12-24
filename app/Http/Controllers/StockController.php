@@ -13,8 +13,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        // Make a StockResource for this. Just for consistency
-
+        
         $stocks = StockResource::collection(Stock::all());
         return inertia('Stocks/Index', [
             'stocks' => $stocks,
