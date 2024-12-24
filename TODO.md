@@ -31,28 +31,28 @@ Step-by-Step Approach
         * Laravel Forge: Once your system is ready for production, Forge can help automate server setup, deployments,
           and scaling.
           Things to Focus on Early on:
-1. Job Queue Processing:
+7. Job Queue Processing:
     * Set up your cron job to process queued jobs.
     * Make sure you understand the basics of Laravel’s queue system (queue:work, queue:listen, job classes, etc.).
-2. Database Structure:
+8. Database Structure:
     * Get your tables set up, including users, trades, portfolios, and the queueable jobs.
     * Focus on key relationships like user <-> portfolio, portfolio <-> trades, and stock <-> market history.
-3. Basic Authentication:
+9. Basic Authentication:
     * Use Laravel’s built-in authentication to manage user sign-ups, logins, and access control.
     * Track user actions and history for later reporting and auditing.
-4. Basic Notifications:
+10. Basic Notifications:
     * Set up simple email or database notifications that inform users of trade confirmations or other relevant events.
     * If needed, you can add a queue job to send notifications in the background (e.g., after a trade completes).
       Incremental Steps After Foundation Is Set
     * Setup in app alerts. Little bell icon (Laravel Echo)
-1. Queue Failures & Retries:
+11. Queue Failures & Retries:
     * Once the basics are up and running, focus on error handling, retries, and tracking failed jobs.
-2. Security & Validation:
+12. Security & Validation:
     * As you handle real transactions (buying/selling), start validating input more rigorously, adding more security
       layers (e.g., CSRF protection, input validation, etc.).
-3. User Interface:
+13. User Interface:
     * After the back-end logic is in place, you can focus on building the front end, either with a basic admin dashboard
       or a user-facing dashboard to manage portfolios, trades, and stocks.
-4. Scaling:
+14. Scaling:
     * As you start processing more trades or users, keep an eye on performance. Look at caching, optimizing database
       queries, and scaling the queue system (e.g., moving to Redis or using SQS).
