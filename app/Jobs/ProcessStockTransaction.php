@@ -23,5 +23,14 @@ class ProcessStockTransaction implements ShouldQueue
     public function handle(): void
     {
         // TODO: Process Stock Transaction Logic here
+
+        // Step 1. User submits the form. StockTransaction Controller validates the data
+        // Adds it to the Trades table. Then Queue's up a job
+        // Step2 : In the handle function we start transaction for that row
+        // Either send to processBuy or processSell depending on type
+        // In each respective function update the Trade table everything has been processed (done in this func)
+        //
     }
+
+    // Implement functions for processing the buys/sells
 }
