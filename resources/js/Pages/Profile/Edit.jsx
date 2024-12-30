@@ -17,11 +17,11 @@ export default function Edit({ mustVerifyEmail, status, portfolio }) {
       <Head title="Profile" />
 
       <ul>
-        {portfolio.map((port) => {
+        {portfolio.data.map((port) => {
           return (
             <li>
-              Starting Balance - {port.starting_balance} - TOtal Gain -{' '}
-              {port.total_gain} - Rank {port.rank}
+              Total Gain &#45; ${port.total_gain.toLocaleString()} <br /> Rank #
+              &nbsp;{port.rank}
             </li>
           );
         })}
