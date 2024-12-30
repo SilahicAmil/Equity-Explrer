@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TradeController extends Controller
 {
@@ -11,15 +12,7 @@ class TradeController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        // Used in profile of like a trading history type way
     }
 
     /**
@@ -27,38 +20,16 @@ class TradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Log::error("Iam in handle");
+        // TODO: Used for the stocktransaction job for buy
+        // Will do validation here and etc
+
+        // Essentially how this works is from the figma design.
+        // On the homepage we'll have stocks on the left and a box for making the trade on the right
+        // When a user clicks a stock we display it on the right (name, price and etc) (useState and prop passing)
+        // When users submit then it hits the TradeController store method and queues up a job
+        // TradeBox will just be a form that submits post data to /trades -> TradeController.store
+        // StockList will just be a table of stocks pretty ez that on click setsSelectedStock in parent ez pz
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

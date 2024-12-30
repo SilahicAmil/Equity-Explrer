@@ -11,5 +11,5 @@ Artisan::command('inspire', function () {
 
 
 // This is how we schedule a job every minute. Basically a cron job
-//Schedule::job(new ProcessStockTransaction())->everyMinute();
+Schedule::job(new ProcessStockTransaction())->everyMinute();
 //* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
