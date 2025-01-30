@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -22,6 +21,7 @@ return new class extends Migration
             $table->timestamp('trade_time');
             $table->foreignId('status')->constrained('trade_statuses');
             $table->timestamp('queue_time');
+            $table->timestamp('deque_time');
             $table->timestamp('completion_time');
             $table->string('error_message')->nullable();
             $table->timestamps();

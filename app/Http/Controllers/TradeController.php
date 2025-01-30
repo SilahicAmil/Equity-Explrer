@@ -10,7 +10,7 @@ class TradeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : void
     {
         // Used in profile of like a trading history type way
     }
@@ -18,7 +18,7 @@ class TradeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : void
     {
         Log::error("Iam in handle");
         // TODO: Used for the stocktransaction job for buy
