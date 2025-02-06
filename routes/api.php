@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TradeController;
 use App\Http\Resources\StockResource;
 use App\Models\Stock;
 use Illuminate\Http\Request;
@@ -15,3 +16,4 @@ Route::get('/stockData', function () {
 });
 
 // Add /trade with TradeController for 'store'
+Route::post('/trade', [TradeController::class, 'store']);

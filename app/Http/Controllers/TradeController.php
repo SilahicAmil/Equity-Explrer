@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\StockResource;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -20,7 +22,14 @@ class TradeController extends Controller
      */
     public function store(Request $request): void
     {
-        Log::error("Iam in handle");
+        $reqest = json_encode($request->all());
+        $stock = Stock::findOrFail($request->stock);
+        Log::error(json_encode((new StockResource($stock))->toArray(request())));
+
+        Log::error("STOCK ID" . $request->stock);
+
+
+
         // TODO: Used for the stocktransaction job for buy
         // Will do validation here and etc
 
