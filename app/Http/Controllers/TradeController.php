@@ -10,7 +10,7 @@ class TradeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : void
+    public function index(): void
     {
         // Used in profile of like a trading history type way
     }
@@ -18,7 +18,7 @@ class TradeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : void
+    public function store(Request $request): void
     {
         Log::error("Iam in handle");
         // TODO: Used for the stocktransaction job for buy
@@ -31,5 +31,4 @@ class TradeController extends Controller
         // TradeBox will just be a form that submits post data to /trades -> TradeController.store
         // StockList will just be a table of stocks pretty ez that on click setsSelectedStock in parent ez pz
     }
-
 }

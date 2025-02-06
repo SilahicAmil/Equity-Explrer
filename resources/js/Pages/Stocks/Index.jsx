@@ -14,11 +14,10 @@ const StocksMainPage = ({ stocks, $stock_sector }) => {
         throw new Error('Failed to fetch stock data');
       }
       const data = await res.json();
-      console.log(data); // Log the data to inspect its structure
-      setStockData(data); // Assuming the response is an array or an object with a 'data' property
+      setStockData(data);
     } catch (error) {
       console.error(error);
-      setStockData([]); // Reset to empty array if error occurs
+      setStockData([]);
     }
   };
 
