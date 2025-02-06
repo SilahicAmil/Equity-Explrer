@@ -21,8 +21,9 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): void
+    public function show(string $id)
     {
         // Stock Details Page
+        return inertia('Stocks/Stock');
     }
 }
