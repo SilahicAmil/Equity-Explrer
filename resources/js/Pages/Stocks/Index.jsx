@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import { Head } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
 const StocksMainPage = ({ stocks, $stock_sector }) => {
   const [stockData, setStockData] = useState([]);
@@ -38,8 +39,10 @@ const StocksMainPage = ({ stocks, $stock_sector }) => {
         {Array.isArray(stockData.data) ? (
           stockData.data.map((stock) => (
             <li key={stock.stock_name}>
-              {stock.stock_name} - {stock.current_price} - {stock.symbol} -{' '}
-              {stock.stock_sector}
+              <Link href={route('stocks.details', stock.stock_name)}>
+                {stock.stock_name}
+              </Link>
+              - {stock.current_price} - {stock.symbol} - {stock.stock_sector}
             </li>
           ))
         ) : (

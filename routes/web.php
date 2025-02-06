@@ -20,7 +20,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
-Route::get('/stocks/{id}', [StockController::class, 'show'])->name('stock.details');
+Route::get('/stocks/{id}', [StockController::class, 'show'])->name('stocks.details');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
