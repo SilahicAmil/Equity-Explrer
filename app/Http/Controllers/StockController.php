@@ -12,13 +12,9 @@ class StockController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): ResponseFactory|Response
+    public function index()
     {
-
-        $stocks = StockResource::collection(Stock::all());
-        return inertia('Stocks/Index', [
-            'stocks' => $stocks,
-        ]);
+        return inertia('Stocks/Index');
     }
 
 
@@ -29,5 +25,4 @@ class StockController extends Controller
     {
         // Stock Details Page
     }
-
 }
