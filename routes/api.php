@@ -13,3 +13,5 @@ Route::get('/user', function (Request $request) {
 Route::get('/stockData', function () {
     return StockResource::collection(Stock::all());
 });
+
+// Add /trade with TradeController for 'store'

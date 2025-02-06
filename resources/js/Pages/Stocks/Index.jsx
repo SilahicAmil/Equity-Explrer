@@ -25,6 +25,8 @@ const StocksMainPage = ({ stocks, $stock_sector }) => {
     fetchStockData();
   }, []);
 
+  // handleTransactionSubmit will go to tradeController
+
   return (
     <AuthenticatedLayout
       header={
