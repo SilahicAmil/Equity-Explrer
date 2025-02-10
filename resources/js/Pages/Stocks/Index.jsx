@@ -25,7 +25,7 @@ const StocksMainPage = ({ stocks, $stock_sector }) => {
     fetchStockData();
   }, []);
 
-  const submitStockTransaction = async () => {
+  const submitStockTransaction = async (e) => {
     try {
       const res = await fetch('http://127.0.0.1:8000/api/trade', {
         method: 'POST',
@@ -34,15 +34,13 @@ const StocksMainPage = ({ stocks, $stock_sector }) => {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          stock: 12,
+          id: 12,
         }),
       });
     } catch (e) {
       console.error(e);
     }
   };
-
-  // handleTransactionSubmit will go to tradeController
 
   return (
     <AuthenticatedLayout

@@ -22,14 +22,19 @@ class TradeController extends Controller
      */
     public function store(Request $request): void
     {
-        $reqest = json_encode($request->all());
-        $stock = Stock::findOrFail($request->stock);
-        Log::error(json_encode((new StockResource($stock))->toArray(request())));
 
-        Log::error("STOCK ID" . $request->stock);
+        $validated_stock = $request->validate([
+            'id' => 'required|int',
+            // 'name' => 'required|int',
+            // 'stock_sector' => 'required|string',
+            // 'symbol' => 'required|string',
+            // 'current_price' => 'required|int',
+            // 'quantity' => 'required|int'
+        ]);
 
+        $stock = Stock::findOrFail($validated_stock['id']);
 
-
+        Log::error($stock);
         // TODO: Used for the stocktransaction job for buy
         // Will do validation here and etc
 

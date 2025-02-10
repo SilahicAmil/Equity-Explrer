@@ -15,6 +15,7 @@ class StockResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'stock_name' => $this->stock_name,
             'stock_sector' => $this->stockSector->stock_sector,  // Use stockSector here
             'current_price' => $this->current_price,
