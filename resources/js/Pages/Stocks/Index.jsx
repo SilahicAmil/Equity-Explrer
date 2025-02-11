@@ -52,20 +52,22 @@ const StocksMainPage = ({ stocks, $stock_sector }) => {
     >
       <Head title="Stocks" />
       <button onClick={submitStockTransaction}>Submit</button>
-      <ul>
-        {Array.isArray(stockData.data) ? (
-          stockData.data.map((stock) => (
-            <li key={stock.stock_name}>
-              <Link href={route('stocks.details', stock.stock_name)}>
-                {stock.stock_name}
-              </Link>
-              - {stock.current_price} - {stock.symbol} - {stock.stock_sector}
-            </li>
-          ))
-        ) : (
-          <li>No stock data available</li>
-        )}
-      </ul>
+      <div>
+        <ul>
+          {Array.isArray(stockData.data) ? (
+            stockData.data.map((stock) => (
+              <li key={stock.stock_name}>
+                <Link href={route('stocks.details', stock.stock_name)}>
+                  {stock.stock_name}
+                </Link>
+                - {stock.current_price} - {stock.symbol} - {stock.stock_sector}
+              </li>
+            ))
+          ) : (
+            <li>No stock data available</li>
+          )}
+        </ul>
+      </div>
     </AuthenticatedLayout>
   );
 };

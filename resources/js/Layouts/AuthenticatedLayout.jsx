@@ -4,6 +4,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import TradeForm from '@/Components/Trades/TradeForm';
 import { useState } from 'react';
 
 export default function AuthenticatedLayout({ header, children }) {
@@ -15,8 +16,8 @@ export default function AuthenticatedLayout({ header, children }) {
   return (
     <div className="min-h-screen bg-gray-100">
       <nav className="border-b border-gray-100 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 justify-between">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex h-24 justify-between">
             <div className="flex">
               <div className="flex shrink-0 items-center">
                 <Link href="/">
@@ -162,15 +163,29 @@ export default function AuthenticatedLayout({ header, children }) {
         </div>
       </nav>
 
-      {header && (
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            {header}
+      <main className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-3 gap-4">
+          {/* Main Box */}
+          {/* Export this to own UI function called Card.jsx */}
+          {/* Take Custom css Params */}
+          <div className="col-span-2 bg-white shadow rounded-lg p-6">
+            <h2 className="text-xl font-semibold">Main Content</h2>
+            {children}
           </div>
-        </header>
-      )}
 
-      <main>{children}</main>
+          {/* Right Section - Two stacked boxes */}
+          <div className="flex flex-col gap-4">
+            <div className="bg-white shadow rounded-lg p-4 h-1/2">
+              <h3 className="text-lg font-medium">Top Box</h3>
+              <TradeForm />
+            </div>
+            <div className="bg-white shadow rounded-lg p-4 h-1/2">
+              <h3 className="text-lg font-medium">Bottom Box</h3>
+              <p>More content here.</p>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
