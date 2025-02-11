@@ -43,13 +43,7 @@ const StocksMainPage = ({ stocks, $stock_sector }) => {
   };
 
   return (
-    <AuthenticatedLayout
-      header={
-        <h2 className="text-xl font-semibold leading-tight text-gray-800">
-          Stocks
-        </h2>
-      }
-    >
+    <AuthenticatedLayout>
       <Head title="Stocks" />
       <button onClick={submitStockTransaction}>Submit</button>
       <div>
