@@ -166,6 +166,8 @@ export default function AuthenticatedLayout({ header, children }) {
       <main className="px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-3 gap-4">
           {/* Main Box */}
+          {/* Export this to own UI function called Card.jsx */}
+          {/* Take Custom css Params */}
           <div className="col-span-2 bg-white shadow rounded-lg p-6">
             <h2 className="text-xl font-semibold">Main Content</h2>
             {children}
