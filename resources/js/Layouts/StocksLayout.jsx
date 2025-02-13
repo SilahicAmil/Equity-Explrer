@@ -4,34 +4,15 @@ import { useEffect, useState } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
+import React from 'react';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import TradeForm from '@/Components/Trades/TradeForm';
 
-export default function AuthenticatedLayout({ children }) {
+export default function StocksLayout({ children }) {
   const user = usePage().props.auth.user;
 
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
     useState(false);
-
-  const [stockData, setStockData] = useState([]);
-
-  const fetchStockData = async () => {
-    try {
-      const res = await fetch('http://127.0.0.1:8000/api/stockData');
-      if (!res.ok) {
-        throw new Error('Failed to fetch stock data');
-      }
-      const data = await res.json();
-      setStockData(data);
-    } catch (error) {
-      console.error(error);
-      setStockData([]);
-    }
-  };
-
-  useEffect(() => {
-    fetchStockData();
-  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -183,7 +164,28 @@ export default function AuthenticatedLayout({ children }) {
         </div>
       </nav>
 
-      <main>{children}</main>
+      <main className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-3 gap-4">
+          {/* Main Box */}
+          <div className="col-span-2 bg-white shadow rounded-lg p-6">
+            <h2 className="text-xl font-semibold">Main Content</h2>
+            {/* All Stock data will be a global state - This is just for now */}
+            {children}
+          </div>
+
+          {/* Right Section - Two stacked boxes */}
+          <div className="flex flex-col gap-4">
+            <div className="bg-white shadow rounded-lg p-4 h-1/2">
+              <h3 className="text-lg font-medium">Top Box</h3>
+              <TradeForm />
+            </div>
+            <div className="bg-white shadow rounded-lg p-4 h-1/2">
+              <h3 className="text-lg font-medium">Bottom Box</h3>
+              <p>More content here.</p>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
