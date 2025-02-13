@@ -3,7 +3,7 @@
 1. **Start with the Basics:**
 
    - [ X ] Set up the database schema
-   - [ ] Ensure basic operations (creating users, adding stocks, making trades, etc.).
+   - [ ] Ensure basic operations (creating users making trades, etc.).
    - [ ] Set up the job queue using Laravel’s basic queue system (e.g., database driver).
 
 2. **Implement Queue Jobs:**

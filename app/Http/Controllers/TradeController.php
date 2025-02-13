@@ -24,15 +24,14 @@ class TradeController extends Controller
     {
 
         $validated_stock = $request->validate([
-            'id' => 'required|int',
-            // 'name' => 'required|int',
+            'name' => 'required|string',
             // 'stock_sector' => 'required|string',
             // 'symbol' => 'required|string',
             // 'current_price' => 'required|int',
             // 'quantity' => 'required|int'
         ]);
 
-        $stock = Stock::findOrFail($validated_stock['id']);
+        $stock = Stock::where('stock_name', '=', $validated_stock['name'])->first();
 
         Log::error($stock);
         // TODO: Used for the stocktransaction job for buy
