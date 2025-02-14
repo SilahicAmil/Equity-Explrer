@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { Link } from '@inertiajs/react';
+import StockTableRow from './StockTableRow';
+
 const StocksTable = () => {
   const [stockData, setStockData] = useState([]);
 
@@ -23,22 +25,20 @@ const StocksTable = () => {
   }, []);
 
   return (
-    <div>
-      <ul>
-        {Array.isArray(stockData.data) ? (
-          stockData.data.map((stock) => (
-            <li key={stock.stock_name}>
-              <Link href={route('stocks.details', stock.stock_name)}>
-                {stock.stock_name}
-              </Link>
-              - {stock.current_price} - {stock.symbol} - {stock.stock_sector}
-            </li>
-          ))
-        ) : (
-          <li>No stock data available</li>
-        )}
-      </ul>
-    </div>
+    <table class="table-auto w-full h-full">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Stock Name</th>
+          <th>Current Price</th>
+          <th>Stock Sector</th>
+          <th>Chart</th>
+        </tr>
+      </thead>
+      <tbody>
+        <StockTableRow stockData={stockData.data} />
+      </tbody>
+    </table>
   );
 };
 

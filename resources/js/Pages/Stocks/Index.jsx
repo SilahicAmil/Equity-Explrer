@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
-
 import { Head } from '@inertiajs/react';
-import { Link } from '@inertiajs/react';
 import StocksLayout from '@/Layouts/StocksLayout';
 import StocksTable from '@/Components/Stocks/StocksTable';
 

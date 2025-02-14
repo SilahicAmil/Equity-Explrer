@@ -168,7 +168,6 @@ export default function StocksLayout({ children }) {
         <div className="grid grid-cols-3 gap-4">
           {/* Main Box */}
           <div className="col-span-2 bg-white shadow rounded-lg p-6">
-            <h2 className="text-xl font-semibold">Main Content</h2>
             {/* All Stock data will be a global state - This is just for now */}
             {children}
           </div>
