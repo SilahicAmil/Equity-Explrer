@@ -8,11 +8,10 @@ import { useState } from 'react';
 const StocksMainPage = ({ stocks }) => {
   const [search, setSearch] = useState('');
 
-  // Filter stocks based on search input
-  // Maybe make this a global state thing idk
   const filteredStocks = stocks.data.filter((stock) =>
     stock.stock_name.toLowerCase().includes(search.toLowerCase()),
   );
+
   return (
     <AuthenticatedLayout>
       <Head title="Stocks" />
