@@ -26,6 +26,8 @@ class ProcessStockTransaction implements ShouldQueue
         Log::error('1234');
         // TODO: Process Stock Transaction Logic here
 
+
+
         // Step 1. User submits the form. StockTransaction Controller validates the data
         // Adds it to the Trades table. Then Here we check every minute for now to process the transaction
         // Step2 : In the handle function we start transaction for that row
