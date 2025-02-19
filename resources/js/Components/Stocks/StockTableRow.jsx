@@ -5,7 +5,7 @@ const StockTableRow = ({ stockData }) => {
     <>
       {Array.isArray(stockData) ? (
         stockData.map((stock) => (
-          <tr>
+          <tr key={stock.id}>
             <td>{stock.id}</td>
             <td>{stock.stock_name}</td>
             <td>{stock.stock_price}</td>

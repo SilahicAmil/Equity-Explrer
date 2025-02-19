@@ -1,31 +1,29 @@
-import { useEffect, useState } from 'react';
-
-import { Link } from '@inertiajs/react';
 import StockTableRow from './StockTableRow';
+import { useQuery } from '@tanstack/react-query';
 
 const StocksTable = () => {
-  const [stockData, setStockData] = useState([]);
-
   const fetchStockData = async () => {
     try {
       const res = await fetch('http://127.0.0.1:8000/api/stockData');
       if (!res.ok) {
         throw new Error('Failed to fetch stock data');
       }
-      const data = await res.json();
-      setStockData(data);
+      return await res.json();
     } catch (error) {
       console.error(error);
-      setStockData([]);
     }
   };
 
-  useEffect(() => {
-    fetchStockData();
-  }, []);
+  const { data, error, isLoading, fetchStatus } = useQuery({
+    queryKey: ['stocks'],
+    queryFn: fetchStockData,
+    cacheTime: 1000 * 60 * 5, // 5 mins?
+  });
+
+  if (fetchStatus == 'fetching') return <div>Loading...</div>;
 
   return (
-    <table class="table-auto w-full h-full">
+    <table className="table-auto w-full h-full">
       <thead>
         <tr>
           <th>#</th>
@@ -36,7 +34,7 @@ const StocksTable = () => {
         </tr>
       </thead>
       <tbody>
-        <StockTableRow stockData={stockData.data} />
+        <StockTableRow stockData={data.data} />
       </tbody>
     </table>
   );
