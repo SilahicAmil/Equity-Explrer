@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from '@inertiajs/react';
 
 const StockTableRow = ({ stockData }) => {
   return (
@@ -7,11 +7,14 @@ const StockTableRow = ({ stockData }) => {
         stockData.map((stock) => (
           <tr key={stock.id}>
             <td>{stock.id}</td>
-            <td>{stock.stock_name}</td>
-            <td>{stock.stock_price}</td>
+            <Link href={`/stocks/${stock.stock_name}`}>
+              <td className="flex justify-center">{stock.stock_name}</td>
+            </Link>
+
+            <td>{stock.current_price}</td>
             <td>{stock.stock_sector}</td>
-            {/* Change this to chart component later on */}
-            <td>{stock.stock_sector}</td>
+            {/* TODO: Change this to chart component later on */}
+            <td>{stock.symbol}</td>
           </tr>
         ))
       ) : (

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StockResource;
 use App\Models\Stock;
-use Inertia\Response;
-use Inertia\ResponseFactory;
 
 class StockController extends Controller
 {
@@ -14,7 +12,11 @@ class StockController extends Controller
      */
     public function index()
     {
-        return inertia('Stocks/Index');
+        $stocks = StockResource::collection(Stock::all());
+        return inertia(
+            'Stocks/Index',
+            ['stocks' => $stocks]
+        );
     }
 
 
