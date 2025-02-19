@@ -1,18 +1,27 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import StocksFiltering from '@/Components/Stocks/StocksFiltering';
 import StocksTable from '@/Components/Stocks/StocksTable';
 import TradeForm from '@/Components/Trades/TradeForm';
+import { useState } from 'react';
 
 const StocksMainPage = ({ stocks }) => {
+  const [search, setSearch] = useState('');
+
+  // Filter stocks based on search input
+  // Maybe make this a global state thing idk
+  const filteredStocks = stocks.data.filter((stock) =>
+    stock.stock_name.toLowerCase().includes(search.toLowerCase()),
+  );
   return (
     <AuthenticatedLayout>
       <Head title="Stocks" />
       <main className="px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-3 gap-4">
           {/* Main Box */}
-          <div className="col-span-2 bg-white shadow rounded-lg p-6">
-            <div className="">FILTER BOX</div>
-            <StocksTable stocks={stocks} />
+          <div className="col-span-2 bg-white shadow rounded-lg p-6 h-screen">
+            <StocksFiltering search={search} setSearch={setSearch} />
+            <StocksTable stocks={filteredStocks} />
           </div>
 
           {/* Right Section - Two stacked boxes */}

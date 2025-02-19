@@ -5,10 +5,10 @@ const StockTableRow = ({ stockData }) => {
     <>
       {Array.isArray(stockData) ? (
         stockData.map((stock) => (
-          <tr key={stock.id}>
+          <tr key={stock.id} className="text-center">
             <td>{stock.id}</td>
             <Link href={`/stocks/${stock.stock_name}`}>
-              <td className="flex justify-center">{stock.stock_name}</td>
+              <td>{stock.stock_name}</td>
             </Link>
 
             <td>{stock.current_price}</td>

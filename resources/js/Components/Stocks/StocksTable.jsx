@@ -2,7 +2,7 @@ import StockTableRow from './StockTableRow';
 
 const StocksTable = ({ stocks }) => {
   return (
-    <table className="table-auto w-full h-full">
+    <table className="table-auto w-full h-fit">
       <thead>
         <tr>
           <th>#</th>
@@ -13,7 +13,7 @@ const StocksTable = ({ stocks }) => {
         </tr>
       </thead>
       <tbody>
-        <StockTableRow stockData={stocks.data} />
+        <StockTableRow stockData={stocks} />
       </tbody>
     </table>
   );
