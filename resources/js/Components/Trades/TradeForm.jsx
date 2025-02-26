@@ -1,7 +1,7 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 const TradeForm = () => {
-  const [stockData, setStockData] = useState([]);
   const [formData, setFormData] = useState({
     id: '',
     name: '',
@@ -15,13 +15,8 @@ const TradeForm = () => {
   const submitStockTransaction = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/trade', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const res = await axios.post('/trade', formData, {
+        withCredentials: true,
       });
     } catch (e) {
       console.error(e);
