@@ -2,20 +2,23 @@
 
 namespace App\Jobs;
 
+use App\Models\Stock;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
 class ProcessStockTransaction implements ShouldQueue
 {
-    use Queueable;
+    use Queueable, Dispatchable, SerializesModels, InteractsWithQueue;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct()
+    public int $stock_id;
+
+    public function __construct(int $stockId)
     {
-        //
+        $this->stock_id = $stockId;
     }
 
     /**
@@ -23,13 +26,17 @@ class ProcessStockTransaction implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::error('1234');
+        Log::error('Received Stock ID in Job: ' . $this->stock_id);
+
+        $stock = Stock::find($this->stock_id);
+
+        Log::info('Stock retrieved: ' . $stock);
         // TODO: Process Stock Transaction Logic here
 
 
-
-        // Step 1. User submits the form. StockTransaction Controller validates the data
+        // Step 1. User submits the form. TradeController Controller validates the data
         // Adds it to the Trades table. Then Here we check every minute for now to process the transaction
+        // TODO: The way im doing it now is just for testing to make it easier.
         // Step2 : In the handle function we start transaction for that row
         // Either send to processBuy or processSell depending on type
         // In each respective function update the Trade table everything has been processed (done in this func)
@@ -37,4 +44,6 @@ class ProcessStockTransaction implements ShouldQueue
     }
 
     // Implement functions for processing the buys/sells
+    public function buyStock() {}
+    public function sellStock() {}
 }

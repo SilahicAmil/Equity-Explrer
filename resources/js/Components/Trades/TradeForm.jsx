@@ -23,10 +23,6 @@ const TradeForm = () => {
     }
   };
 
-  // TODO: When we serach for the name
-  // this will be a seperate call to find the stock and get the data
-  // then taht is returned here and stored somewere in sate and we pass that to submitStockTranscation
-
   return (
     <form onSubmit={submitStockTransaction}>
       <div className="mb-2">
