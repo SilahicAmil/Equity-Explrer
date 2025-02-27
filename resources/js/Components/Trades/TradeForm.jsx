@@ -3,8 +3,9 @@ import { useState } from 'react';
 
 const TradeForm = () => {
   const [formData, setFormData] = useState({
-    id: '',
-    name: '',
+    name: 'Metz LLC',
+    quantity: 1,
+    type: 'buy',
   });
 
   const handleInputChange = (e) => {

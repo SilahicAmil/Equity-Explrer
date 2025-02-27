@@ -14,11 +14,13 @@ class ProcessStockTransaction implements ShouldQueue
 {
     use Queueable, Dispatchable, SerializesModels, InteractsWithQueue;
 
-    public int $stock_id;
+    public string $stock_name;
+    public string $transaction_type;
 
-    public function __construct(int $stockId)
+    public function __construct(string $stockName, string $transactionType)
     {
-        $this->stock_id = $stockId;
+        $this->stock_name = $stockName;
+        $this->transaction_type = $transactionType;
     }
 
     /**
@@ -26,12 +28,17 @@ class ProcessStockTransaction implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::error('Received Stock ID in Job: ' . $this->stock_id);
+        Log::error('Received Stock ID in Job: ' . $this->stock_name);
+        Log::error('Received Stock Transaction Type: : ' . $this->transaction_type);
 
-        $stock = Stock::find($this->stock_id);
+        $stock = Stock::where('stock_name', '=', $this->stock_name)->first();
 
         Log::info('Stock retrieved: ' . $stock);
         // TODO: Process Stock Transaction Logic here
+
+        if ($this->transaction_type == 'buy') {
+            $this->buyStock($stock);
+        }
 
 
         // Step 1. User submits the form. TradeController Controller validates the data
@@ -44,6 +51,10 @@ class ProcessStockTransaction implements ShouldQueue
     }
 
     // Implement functions for processing the buys/sells
-    public function buyStock() {}
+    public function buyStock(Stock $stock)
+    {
+        Log::error("BUY FUNCTION STOCK " . $stock);
+    }
+    
     public function sellStock() {}
 }

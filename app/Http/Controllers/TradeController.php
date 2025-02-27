@@ -27,19 +27,19 @@ class TradeController extends Controller
 
         $validated_stock = $request->validate([
             'name' => 'required|string',
-            // 'stock_sector' => 'required|string',
-            // 'symbol' => 'required|string',
-            // 'current_price' => 'required|int',
-            // 'quantity' => 'required|int'
+            'quantity' => 'required|int',
+            'type' => 'required|string'
         ]);
 
         $stock = Stock::where('stock_name', '=', $validated_stock['name'])->first();
+
         // TODO: change BUY to transaction type
         addUserActionHistory(Auth::id(), 'Stock Trade Request', 'User attempted a BUY trade request');
 
-        // TODO: Add transaction to Trade table the in jobs check for that table
+        // TODO: Add transaction to Trade table the in jobs check for that table instead of directly passing it
+        // This is just for testing for now
         Log::error($stock);
         // Send this to the ProcessStockTransaction job
-        ProcessStockTransaction::dispatch($stock->id);
+        ProcessStockTransaction::dispatch($validated_stock['name'], $validated_stock['type']);
     }
 }
