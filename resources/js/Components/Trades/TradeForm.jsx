@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const TradeForm = ({ stocks }) => {
   const [formData, setFormData] = useState({
-    name: 'Dietrich and Sons',
+    name: 'Botsford Group',
     quantity: 1,
     type: 'buy',
   });

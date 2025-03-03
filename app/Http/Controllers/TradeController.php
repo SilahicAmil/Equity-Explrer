@@ -40,7 +40,7 @@ class TradeController extends Controller
         $stock = Stock::where('stock_name', '=', $validated_stock['name'])->first();
         Helpers::addUserActionHistory(Auth::id(), 'Stock Trade Request', "User attempted a {$validated_stock['type']} trade request");
 
-        $portfolio_id = Portfolio::where('user_id', auth()->user()->id)->first()->id;
+        $portfolio_id = Portfolio::where('user_id', Auth::id())->first()->id;
         $stock_id = Stock::where('stock_name', $validated_stock['name'])->first()->id;
         $trade_type = TradeType::where('type', $validated_stock['type'])->first()->id;
         $trade_status = TradeStatus::where('status_name', 'Q')->first()->id;
@@ -57,6 +57,6 @@ class TradeController extends Controller
             'status' => $trade_status
         ]);
 
-        ProcessStockTransaction::dispatch()->delay(Carbon::now()->addSeconds(60));
+        ProcessStockTransaction::dispatch();
     }
 }
