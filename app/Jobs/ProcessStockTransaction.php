@@ -2,8 +2,10 @@
 
 namespace App\Jobs;
 
+use App\Helpers\Helpers;
 use App\Models\Stock;
 use App\Models\Trade;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
@@ -23,7 +25,7 @@ class ProcessStockTransaction implements ShouldQueue
      */
     public function handle(): void
     {
-
+        // TODO: Implement User Trade History - for Buy and Sell.
         $trades = Trade::where('status', '=', 1)->get();
         Log::error("TRADES " . $trades);
     }
