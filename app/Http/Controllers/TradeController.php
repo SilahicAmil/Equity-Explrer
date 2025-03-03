@@ -56,5 +56,7 @@ class TradeController extends Controller
             'queue_time' => Carbon::now(),
             'status' => $trade_status
         ]);
+
+        ProcessStockTransaction::dispatch()->delay(Carbon::now()->addSeconds(60));
     }
 }
