@@ -25,6 +25,7 @@ const TradeForm = ({ stocks }) => {
   };
 
   return (
+    // TODO: IMplement what I did with StocksFiltering here basically.
     <form onSubmit={submitStockTransaction}>
       <div className="mb-2">
         <label htmlFor="">Stock Name</label>
