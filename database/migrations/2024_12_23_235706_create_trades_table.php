@@ -18,11 +18,11 @@ return new class extends Migration {
             $table->integer('quantity');
             $table->float('price_per_stock');
             $table->float('total_amount');
-            $table->timestamp('trade_time');
+            $table->timestamp('trade_time')->nullable();
             $table->foreignId('status')->constrained('trade_statuses');
-            $table->timestamp('queue_time');
-            $table->timestamp('deque_time');
-            $table->timestamp('completion_time');
+            $table->timestamp('queue_time')->nullable();
+            $table->timestamp('deque_time')->nullable();
+            $table->timestamp('completion_time')->nullable();
             $table->string('error_message')->nullable();
             $table->timestamps();
         });

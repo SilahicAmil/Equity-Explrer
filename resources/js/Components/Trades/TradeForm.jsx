@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-const TradeForm = () => {
+const TradeForm = ({ stocks }) => {
   const [formData, setFormData] = useState({
-    name: 'Metz LLC',
+    name: 'Dietrich and Sons',
     quantity: 1,
     type: 'buy',
   });

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\StockResource;
+use App\Helpers\Helpers;
 use App\Jobs\ProcessStockTransaction;
+use App\Models\Portfolio;
 use App\Models\Stock;
+use App\Models\Trade;
+use App\Models\TradeStatus;
+use App\Models\TradeType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -25,6 +30,7 @@ class TradeController extends Controller
     public function store(Request $request): void
     {
 
+        Log::error($request);
         $validated_stock = $request->validate([
             'name' => 'required|string',
             'quantity' => 'required|int',
@@ -32,14 +38,23 @@ class TradeController extends Controller
         ]);
 
         $stock = Stock::where('stock_name', '=', $validated_stock['name'])->first();
+        Helpers::addUserActionHistory(Auth::id(), 'Stock Trade Request', "User attempted a {$validated_stock['type']} trade request");
 
-        // TODO: change BUY to transaction type
-        addUserActionHistory(Auth::id(), 'Stock Trade Request', 'User attempted a BUY trade request');
+        $portfolio_id = Portfolio::where('user_id', auth()->user()->id)->first()->id;
+        $stock_id = Stock::where('stock_name', $validated_stock['name'])->first()->id;
+        $trade_type = TradeType::where('type', $validated_stock['type'])->first()->id;
+        $trade_status = TradeStatus::where('status_name', 'Q')->first()->id;
 
-        // TODO: Add transaction to Trade table the in jobs check for that table instead of directly passing it
-        // This is just for testing for now
-        Log::error($stock);
-        // Send this to the ProcessStockTransaction job
-        ProcessStockTransaction::dispatch($validated_stock['name'], $validated_stock['type']);
+        Trade::create([
+            'portfolio_id' => $portfolio_id,
+            'stock_id' => $stock_id,
+            'trade_type' => $trade_type,
+            'quantity' => 3,
+            'price_per_stock' => 100,
+            'total_amount' => 300,
+            'trade_time' => Carbon::now(),
+            'queue_time' => Carbon::now(),
+            'status' => $trade_status
+        ]);
     }
 }
