@@ -14,16 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class TradeController extends Controller
+class TradeTransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): void
-    {
-        // Used in profile of like a trading history type way
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -57,6 +49,8 @@ class TradeController extends Controller
             'status' => $trade_status
         ]);
 
+        // Maybe eventually add like a minute delay?
         ProcessStockTransaction::dispatch();
+        // Dispatch a toast notification
     }
 }

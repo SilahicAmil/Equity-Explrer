@@ -2,15 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Helpers\Helpers;
-use App\Models\Stock;
 use App\Models\Trade;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ProcessStockTransaction implements ShouldQueue
@@ -25,16 +23,18 @@ class ProcessStockTransaction implements ShouldQueue
      */
     public function handle(): void
     {
-        // TODO: Implement User Trade History - for Buy and Sell.
-        $trades = Trade::where('status', '=', 1)->get();
+        $trades = Trade::where('status', '=', 1)->first();
+        // Add to UserTradeHistory when processing job. After we get a sucessful return from processBuy/SellTrade
+        // Need user_id, stock_id and trade type - which we have get from the $trades
         Log::error("TRADES " . $trades);
+        Log::error("TRADES 123123 " . $trades['stock_id']);
     }
 
     // Implement functions for processing the buys/sells
-    public function buyStock(Stock $stock)
+    public function processBuyTrade(Trade $trade)
     {
-        Log::error("BUY FUNCTION STOCK " . $stock);
+        Log::error("BUY FUNCTION STOCK " . $trade);
     }
 
-    public function sellStock() {}
+    public function processSellTrade() {}
 }

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
-use App\Http\Controllers\TradeController;
+use App\Http\Controllers\TradeTransactionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::post('/trade', [TradeController::class, 'store']);
+    Route::post('/trade', [TradeTransactionController::class, 'store']);
     Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
     Route::get('/stocks/{id}', [StockController::class, 'show'])->name('stocks.details');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
