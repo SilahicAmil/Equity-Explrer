@@ -1,7 +1,15 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+// TODO: Implement this next
+// For now we can just filter the stocks array
+// So like filter based off input with some type of debounce
+// Eventually we probably want to make this an API to search?
+// like TradeTransactionController -> search function
+// Probably need to refactyor that name idk
+
 const TradeForm = ({ stocks }) => {
+  console.log(stocks);
   const [formData, setFormData] = useState({
     name: 'Botsford Group',
     quantity: 1,
