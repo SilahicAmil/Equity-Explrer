@@ -13,6 +13,7 @@ const StocksTable = ({ stocks }) => {
         </tr>
       </thead>
       <tbody>
+        {/* TODO: onClick show Trade Modal */}
         <StockTableRow stockData={stocks} />
       </tbody>
     </table>
