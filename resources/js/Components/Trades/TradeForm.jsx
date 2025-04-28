@@ -21,6 +21,7 @@ const TradeForm = ({ selectedStock }) => {
 
   async function submitTradeForm(e) {
     e.preventDefault();
+    console.log('FORM DATA', formData);
     try {
       const res = await axios.post('/trade', formData, {
         withCredentials: true,
@@ -81,7 +82,6 @@ const TradeForm = ({ selectedStock }) => {
             type="text"
             className="text-sm w-1/2 "
             placeholder="0"
-            // value={formData.quantity}
             onChange={handleInputChange}
           />
         </div>
@@ -95,7 +95,6 @@ const TradeForm = ({ selectedStock }) => {
               type="radio"
               name="transaction_type"
               value="buy"
-              checked={(formData.type = 'buy')}
               onChange={handleInputChange}
             />
             <label>Sell</label>
@@ -103,7 +102,6 @@ const TradeForm = ({ selectedStock }) => {
               type="radio"
               name="transaction_type"
               value="sell"
-              checked={(formData.type = 'sell')}
               onChange={handleInputChange}
             />
           </div>
