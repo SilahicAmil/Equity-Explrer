@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const StocksMainPage = ({ stocks }) => {
   const [search, setSearch] = useState('');
+  const [selectedStock, setSelectedStock] = useState(null);
 
   const filteredStocks = stocks.data.filter((stock) =>
     stock.stock_name.toLowerCase().includes(search.toLowerCase()),
@@ -20,14 +21,17 @@ const StocksMainPage = ({ stocks }) => {
           {/* Main Box */}
           <div className="col-span-2 bg-white shadow rounded-lg p-6 h-screen">
             <StocksFiltering search={search} setSearch={setSearch} />
-            <StocksTable stocks={filteredStocks} />
+            <StocksTable
+              stocks={filteredStocks}
+              setSelectedStock={setSelectedStock}
+            />
           </div>
 
           {/* Right Section - Two stacked boxes */}
           <div className="flex flex-col gap-4">
             <div className="bg-white shadow rounded-lg p-4 h-1/2">
               <h3 className="text-2xl font-medium">Trade</h3>
-              <TradeForm stocks={stocks} />
+              <TradeForm selectedStock={selectedStock} />
             </div>
             <div className="bg-white shadow rounded-lg p-4 h-1/2">
               <h3 className="text-lg font-medium">Bottom Box</h3>
