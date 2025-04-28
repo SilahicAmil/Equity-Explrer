@@ -13,12 +13,8 @@ const StocksTable = ({ stocks, setSelectedStock }) => {
         </tr>
       </thead>
       <tbody>
-<<<<<<< Updated upstream
-        <StockTableRow stockData={stocks} />
-=======
         {/* TODO: onClick show Trade Modal */}
         <StockTableRow stockData={stocks} setSelectedStock={setSelectedStock} />
->>>>>>> Stashed changes
       </tbody>
     </table>
   );
